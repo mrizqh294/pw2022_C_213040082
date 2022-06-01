@@ -96,7 +96,7 @@ $empty = mysqli_query($db,"SELECT * FROM transaksi JOIN user ON transaksi.id_use
 
                 <div class="col-6 col-md-3">
                   <div class="card c-admin p-2 pb-0 shadow-sm bg-body rounded mt-4">
-                    <img src="../aset/img/<?php echo $k["gambar_produk"] ?>">
+                    <img src="../aset/img/<?php echo $k["gambar_produk"] ?>" width="100%">
                     <div class="text-center title">
                       <p class="m-0 nama_produk card-title"><?php echo $k["nama_produk"]; ?></p>
                       <p class="m-0" style=" font-size: 12px;"><?php echo $k["username_user"]; ?></p>

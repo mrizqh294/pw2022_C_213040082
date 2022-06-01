@@ -105,7 +105,7 @@ $produk = query("SELECT * FROM produk WHERE id_kategori = 4");
               <?php foreach ( $produk as $p): ?>
                 <div class="col-6 col-md-3" >
                   <div class="card c-user p-2 shadow-sm bg-body rounded mt-4" id="card">
-                    <img src="../../aset/img/<?php echo $p["gambar_produk"] ?>">
+                    <img src="../../aset/img/<?php echo $p["gambar_produk"] ?>" width="100%">
                     <div class="text-center title">
                       <p class="m-0 nama_produk"><?php echo $p["nama_produk"]; ?></p>
                       <p class="mb-3 harga" >Rp.<?php echo $p["harga_produk"]; ?></p>

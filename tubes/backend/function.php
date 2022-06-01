@@ -37,8 +37,8 @@ function tambah ($data_produk) {
 		return false;
 	}
 
-	$query = "INSERT INTO produk VALUES ('','$id_kategori','$nama_produk','$merk_produk','$harga_produk', '$desk_produk','$gambar_produk'  )";
-	mysqli_query($db,$query);
+	$query = "INSERT INTO produk VALUES (NULL,'$id_kategori','$nama_produk','$merk_produk','$harga_produk', '$desk_produk','$gambar_produk'  )";
+	mysqli_query($db,$query) or die(mysqli_error($db));
 
 	return mysqli_affected_rows ($db);
 }
@@ -248,12 +248,12 @@ function tambah_admin ($data) {
 	$password_baru = password_hash($password2, PASSWORD_DEFAULT);
 
 	$query = "INSERT INTO admin VALUES (
-		'',
+		 NULL,
 		'$nama',
 		'$username',
 		'$password_baru')
 	";
-	mysqli_query($db,$query) ;
+	mysqli_query($db,$query) or die(mysqli_error($db));
 	return mysqli_affected_rows($db);
 
 }
@@ -277,8 +277,8 @@ function keranjang($data) {
 		return false;
 	}
 
-	$query = "INSERT INTO keranjang VALUES ('','$kode_produk','$id_user','$jumlah' )";
-	mysqli_query($db,$query);
+	$query = "INSERT INTO keranjang VALUES (NULL,'$kode_produk','$id_user','$jumlah' )";
+	mysqli_query($db,$query) or die(mysqli_error($db));
 
 	return mysqli_affected_rows ($db);
 
@@ -382,7 +382,7 @@ function registrasi ($data) {
 
 
 	$query = "INSERT INTO user VALUES (
-		'',
+		NULL,
 		'$nama',
 		'$username',
 		'$email',
@@ -390,7 +390,7 @@ function registrasi ($data) {
 		'$alamat',
 		'$password_hash')
 	";
-	mysqli_query($db,$query) ;
+	mysqli_query($db,$query) or die(mysqli_error($db)) ;
 	return mysqli_affected_rows($db);
 
 }
@@ -435,9 +435,9 @@ function konfirmasi ($data) {
 	$jumlah_produk = $data['jumlah_produk'];
 	$alamat = $data['alamat_pengiriman'];
 
-	$query = "INSERT INTO transaksi VALUES ('','$id_user',CURRENT_TIMESTAMP,DEFAULT,'$total_bayar','$id_produk','$jumlah_produk','$alamat')";
+	$query = "INSERT INTO transaksi VALUES (NULL,'$id_user',CURRENT_TIMESTAMP,DEFAULT,'$total_bayar','$id_produk','$jumlah_produk','$alamat')";
 
-	mysqli_query($db,$query);
+	mysqli_query($db,$query) or die(mysqli_error($db));
 
 	return mysqli_affected_rows($db);
 }

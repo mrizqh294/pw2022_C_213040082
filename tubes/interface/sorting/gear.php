@@ -107,7 +107,7 @@ $adminLogin = $_SESSION['adminLogin'];
               <?php foreach ( $produk as $p): ?>
                 <div class="col-6 col-md-3">
                   <div class="card c-admin p-2 shadow-sm bg-body rounded mt-4">
-                    <img src="../../aset/img/<?php echo $p["gambar_produk"] ?>">
+                    <img src="../../aset/img/<?php echo $p["gambar_produk"] ?>" width="100%">
                     <div class="text-center title">
                       <p class="m-0 nama_produk card-title"><?php echo $p["nama_produk"]; ?></p>
                       <p class="m-0" style=" font-size: 12px;">Rp.<?php echo $p["harga_produk"]; ?></p>

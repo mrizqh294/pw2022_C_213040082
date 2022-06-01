@@ -154,7 +154,7 @@ if (isset($_POST['pesan'])) {
 
                 <div class="col-6 col-md-3">
                   <div class="card c-admin p-2 pb-0 shadow-sm bg-body rounded mt-4">
-                    <img src="../aset/img/<?php echo $k["gambar_produk"] ?>">
+                    <img src="../aset/img/<?php echo $k["gambar_produk"] ?>" width="100%">
                     <div class="text-center title">
                       <p class="m-0 nama_produk"><?php echo $k["nama_produk"]; ?></p>
                       <p class="m-0" style=" font-size: 12px;">Rp.<?php echo $k["harga_produk"]; ?></p>
