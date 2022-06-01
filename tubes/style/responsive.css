@@ -1,0 +1,27 @@
+@media screen and (max-width : 1200px) {
+
+}
+
+
+@media screen and (max-width : 768px) {
+
+}
+
+
+@media screen and (max-width : 576px) {
+
+
+	.add {
+		font-size: 20px;
+	}
+
+	.btn-keranjang {
+		width: 80%;
+	}
+
+	.input-detail {
+		width: 80%;
+	}
+
+
+}	

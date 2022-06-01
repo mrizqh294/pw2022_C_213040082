@@ -12,8 +12,8 @@ $mahasiswa = [
 	"Nama" => "Rizki",
 	"NRP"  => "213040082",
 	"jurusan" => "IF",
-	"Email"  => "rizh"
-	"gambar" => "																																																							"
+	"Email"  => "rizh",
+	"gambar" => "h"
 	],
 	[
 	"Nama" => "Ranca",
