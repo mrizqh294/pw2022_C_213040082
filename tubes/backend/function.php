@@ -32,9 +32,13 @@ function tambah ($data_produk) {
 	
 	// jalankan fungsi uplod gambar
 
-	$gambar_produk = upload();
-	if (!$gambar_produk) {
+	if ($_FILES['gambar_produk']['error']===4) {
+		$gambar_produk = 'noimage.jpg';
+	} else {
+		$gambar_produk = upload();
+		if (!$gambar_produk) {
 		return false;
+		}
 	}
 
 	$query = "INSERT INTO produk VALUES (NULL,'$id_kategori','$nama_produk','$merk_produk','$harga_produk', '$desk_produk','$gambar_produk'  )";
@@ -106,7 +110,16 @@ function upload() {
 
 function hapus ($id){
 	global $db;
+
+
+	$produk = query("SELECT * FROM produk WHERE kode_produk = $id")[0];
+
+	if ($produk['gambar_produk'] !=='noimage.jpg') {
+		unlink('../aset/img/'.$produk['gambar_produk']);
+	}
+
 	mysqli_query ($db,"DELETE FROM produk WHERE kode_produk = $id");
+
 	return mysqli_affected_rows ($db);
 }
 

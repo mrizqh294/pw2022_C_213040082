@@ -54,7 +54,7 @@ if (isset($_POST["submit"])) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <!-- my style -->
-    <link rel="stylesheet" type="text/css" href="../style/style.css?x=10">
+    <link rel="stylesheet" type="text/css" href="../style/style.css?x=88">
     <link rel="stylesheet" type="text/css" href="responsive.css?x=10">
 
     <!-- font google -->
@@ -83,7 +83,7 @@ if (isset($_POST["submit"])) {
 	              </div>
 	              <form>
 	              	<div class="row">
-		              	<div class="col-md-6">
+		              	<div class="col-md-4">
 				              <div class="col-md-12">
 				                <p class="text-center pt-2">Nama Produk :</p>
 				                <input autocomplete="off" class="inputForm" type="text" name="nama_produk" placeholder="Nama Produk" required>
@@ -104,14 +104,18 @@ if (isset($_POST["submit"])) {
 				                </select>
 				              </div>
 		              	</div>
-		              	<div class="col-md-6">
+		              	<div class="col-md-4">
+		              		<p class="fw-bold">Preview Gambar</p>
+		              		<img src="../aset/img/noimage.jpg" id="prev" width="80%">
+		              	</div>
+		              	<div class="col-md-4">
 		              		<div class="col-md-12">
-				                <p class="text-center pt-2 ">Harga Produk:</p>
+				                <p class="text-center pt-2">Harga Produk:</p>
 				                <input autocomplete="off" class="inputForm" type="text" name="harga_produk" placeholder="Harga"  required>
 				              </div>
 				              <div class="col-md-12">
 				                <p class="text-center pt-2 ">Gambar Produk:</p>
-				                <input autocomplete="off" class="inputForm form-control ms-2 ms-lg-4" type="file" name="gambar_produk">
+				                <input autocomplete="off" class="inputForm form-control ms-3" type="file" name="gambar_produk" id="gambar_produk" onchange="preview()">
 				              </div>
 				              <div class="col-md-12">
 				                <p class="text-center pt-2 ">Deskripsi produk:</p>
@@ -131,4 +135,5 @@ if (isset($_POST["submit"])) {
     </section>
 
 </body>
+<script src="../js/script5.js"></script>
 </html>

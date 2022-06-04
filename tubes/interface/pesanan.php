@@ -16,6 +16,7 @@ $id = $userLogin['id_user'];
 
 $t = query("SELECT * FROM transaksi JOIN user ON transaksi.id_user = user.id_user JOIN produk ON transaksi.id_produk = produk.kode_produk WHERE transaksi.id_user = $id ");
 
+
 $empty = mysqli_query($db,"SELECT * FROM transaksi JOIN user ON transaksi.id_user = user.id_user JOIN produk ON transaksi.id_produk = produk.kode_produk WHERE transaksi.id_user = $id ");
 
 
@@ -125,7 +126,7 @@ $empty = mysqli_query($db,"SELECT * FROM transaksi JOIN user ON transaksi.id_use
                         <a href="pembayaran.php" class="bg-dark more mt-2">Bayar</a>
                       <?php endif ?>
                       <?php if ( $k['status_transaksi'] === 'selesai' ): ?>
-                        <a class="bg-dark more mt-2">Unduh Bukti</a>
+                        <a class="bg-dark more mt-2" href="../backend/Bukti_pembelian.php?id=<?php echo $k['kode_produk'];?>&id_transaksi=<?php echo $k['id_transaksi'] ?>">Unduh Bukti</a>
                       <?php endif ?>
                     </div>
                   </div>

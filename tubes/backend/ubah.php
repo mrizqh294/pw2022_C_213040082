@@ -111,7 +111,7 @@ if (isset($_POST["submit"])) {
 		            			<div class="col-md-4">
 		            				<div class="col-md-12 my-auto order-md-2">
 		            					<p class="fw-bold">Preview Gambar Lama :</p>
-						            	<img src="../aset/img/<?php echo $p['gambar_produk'] ?>" width="70%">
+						            	<img src="../aset/img/<?php echo $p['gambar_produk'] ?>" width="80%">
 						            </div>
 		            			</div>
 		            			<div class="col-md-4">

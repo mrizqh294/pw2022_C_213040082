@@ -29,7 +29,7 @@ if (isset($_POST['submit'])){
     $resultAdmin = mysqli_fetch_assoc($admin);
     if (password_verify($password, $resultAdmin['password_admin_fix'])) {
       $_SESSION['loginAdmin'] = true;
-    $_SESSION['adminLogin'] = $resultAdmin;
+      $_SESSION['adminLogin'] = $resultAdmin;
     header("location: ../interface/halaman_admin.php");
     exit;
     }    

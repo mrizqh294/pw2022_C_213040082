@@ -108,7 +108,7 @@
              </div>
              <div class="col-md-6 my-auto">
               <div class="col-md-12 text-center text-lg-start">
-                <p><span>Nama : </span><?php echo $t['nama_produk'] ?></p>
+                <p><span>Nama Produk : </span><?php echo $t['nama_produk'] ?></p>
                 <p><span>Merk : </span><?php echo $t['merk_produk'] ?></p>
                 <p><span>Jumlah Bayar : </span>Rp.<?php echo $t['jumlah_transaksi'] ?></p>
                 <p><span>Nama Penerima : </span><?php echo $t['nama_user'] ?></p>
@@ -129,7 +129,7 @@
                   <div class="col-md-6 text-center text-lg-start">
                     <form action="" method="POST">
                       <?php if ( $t['status_transaksi'] === "selesai"): ?>
-                        <button class="more btn-dark">Download</button>
+                        <a class="more btn btn-dark"  href="../backend/Bukti_pembelian.php?id=<?php  echo $id_produk ?>&id_transaksi=<?php echo $t['id_transaksi'] ?>">Download</a>
                       <?php endif ?>
                     </form>
                   </div>
