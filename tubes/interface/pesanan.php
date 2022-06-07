@@ -5,7 +5,7 @@ session_start();
 if (!isset($_SESSION['loginUser'])) {
   header("location: ../index.php");
   exit;
-}
+};
 
 require '../backend/function.php';
 
@@ -123,7 +123,7 @@ $empty = mysqli_query($db,"SELECT * FROM transaksi JOIN user ON transaksi.id_use
                     <div class="text-center action mb-3">
                       <a href="detail_pesanan_user.php?kode_produk=<?php echo $k['kode_produk'];?>&id_transaksi=<?php echo $k['id_transaksi'] ?>" class="bg-dark more">Detail</a>
                       <?php if ( $k['status_transaksi'] === 'pending'): ?>
-                        <a href="pembayaran.php" class="bg-dark more mt-2">Bayar</a>
+                        <a href="pembayaran.php?id_transaksi=<?php echo $k['id_transaksi'] ?>" class="bg-dark more mt-2">Bayar</a>
                       <?php endif ?>
                       <?php if ( $k['status_transaksi'] === 'selesai' ): ?>
                         <a class="bg-dark more mt-2" href="../backend/Bukti_pembelian.php?id=<?php echo $k['kode_produk'];?>&id_transaksi=<?php echo $k['id_transaksi'] ?>">Unduh Bukti</a>

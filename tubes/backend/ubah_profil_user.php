@@ -9,7 +9,11 @@ if (!isset($_SESSION['loginUser'])) {
 
 require 'function.php';
 
-$userLogin = $_SESSION['userLogin'];
+$Login = $_SESSION['userLogin'];
+
+$id = $Login['id_user'];
+
+$userLogin = query("SELECT * FROM user WHERE id_user = $id")[0];
 
 if (isset($_POST["submit"])) {
 
@@ -107,7 +111,7 @@ if (isset($_POST["submit"])) {
     	<div class="container-fluid pt-5">
     		<div class="container w-100">
     			<div class="row w-100 mx-auto">
-    				<div class="col-md-6 text-center mx-auto border shadow-sm rounded p-5 mt-4 mb-5">
+    				<div class="col-md-6 text-center mx-auto border shadow-sm LoTaUb p-5 mt-4 mb-5">
     					<h4 class=" fw-bold">Ubah Profil Saya</h4>
     					<form action="" method="POST">
     						<p class="pt-2">Nama :</p>

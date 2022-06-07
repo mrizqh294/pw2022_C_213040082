@@ -70,14 +70,21 @@ $adminLogin = $_SESSION['adminLogin'];
                 <li><a class="dropdown-item" href="aksesoris.php" style="color: black !important;">Aksesoris</a></li>
               </ul>
             </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Pesanan
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" >
+                <li><a class="dropdown-item" href="../pesanan_pending.php" style="color: black !important;">Pending</a></li>
+                <li><a class="dropdown-item" href="../pesanan_dibayar.php" style="color: black !important;">Dibayar</a></li>
+                <li><a class="dropdown-item" href="../pesanan_selesai.php" style="color: black !important;">Selesai</a></li>                
+              </ul>
+            </li>
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="../../backend/tambah_produk.php">Tambah Produk</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="../../backend/tambah_admin.php">Tambah Admin</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="../pesanan_admin.php">Pesanan</a>
             </li>
           </ul>
           <!-- <form class="d-flex" action="" method="POST">
@@ -93,7 +100,6 @@ $adminLogin = $_SESSION['adminLogin'];
     <!-- akhir navbar -->
 
     <!-- ini isi -->
-
     <section>
       <div class="container-fluid pt-5">
         <div class="container mt-4 mb-4 pt-4 w-100">
@@ -102,6 +108,8 @@ $adminLogin = $_SESSION['adminLogin'];
               <h2 class="fw-bold text-center text-lg-start">Gitar Series</h2>
             </div>
           </div>
+
+          
           <div class="col-md-12">
             <div class="row" id="isi1">
               <?php foreach ( $produk as $p): ?>
@@ -132,7 +140,6 @@ $adminLogin = $_SESSION['adminLogin'];
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-
     <!-- Option 2: Separate Popper and Bootstrap JS -->
     <!--
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>

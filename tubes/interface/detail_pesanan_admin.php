@@ -17,22 +17,26 @@
 
   $id_user = $_GET['id_user'];
 
+  $id_transaksi = $_GET['id_transaksi'];
 
-  $t = query("SELECT * FROM transaksi JOIN user ON transaksi.id_user = user.id_user JOIN produk ON transaksi.id_produk = produk.kode_produk WHERE produk.kode_produk = $id_produk AND user.id_user = $id_user")[0];
+
+  $t = query("SELECT * FROM transaksi JOIN user ON transaksi.id_user = user.id_user JOIN produk ON transaksi.id_produk = produk.kode_produk WHERE produk.kode_produk = $id_produk AND user.id_user = $id_user AND transaksi.id_transaksi = $id_transaksi" )[0];
+
+  $pembayaran = mysqli_query($db,"SELECT * FROM pembayaran WHERE id_transaksi = $id_transaksi");
 
   if (isset($_POST['proses'])) {
     if ( proses($_POST) > 0) {
       echo "
       <script>
         alert('Berhasil diproses');
-        document.location.href='pesanan_admin.php';
+        document.location.href='pesanan_pending.php';
       </script>
     ";
     } else {
       echo "
       <script>
         alert('gagal diproses');
-        document.location.href='pesanan_admin.php';
+        document.location.href='pesanan_pending.php';
       </script>
     ";
     }
@@ -85,7 +89,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link" href="pesanan_admin.php">Kembali</a>
+              <a class="nav-link" href="pesanan_pending.php">Kembali</a>
             </li>
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="../backend/tambah_produk.php">Tambah Produk</a>
@@ -121,6 +125,9 @@
                 <p><span>Alamat Penerima : </span><?php echo $t['alamat_pengiriman'] ?></p>
                 <p><span>Waktu pemesanan : </span><?php echo $t['tanggal_transaksi'] ?></p>
                 <p>Status pemesanan : <span style="font-style :italic;"><?php echo $t['status_transaksi'] ?></span></p>
+                <?php if (mysqli_num_rows($pembayaran)===0): ?>
+                  <p class="fw-bold" style="font-style: italic;">Pelanggan ini belum menyelesaikan pembayaran.</p>
+                <?php endif ?>
               </div>
               <div class="col-md-12 text-center text-lg-start">
                 <div class="row">

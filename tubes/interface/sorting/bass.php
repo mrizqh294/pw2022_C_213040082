@@ -70,14 +70,21 @@ $adminLogin = $_SESSION['adminLogin'];
                 <li><a class="dropdown-item" href="aksesoris.php" style="color: black !important;">Aksesoris</a></li>
               </ul>
             </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Pesanan
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" >
+                <li><a class="dropdown-item" href="../pesanan_pending.php" style="color: black !important;">Pending</a></li>
+                <li><a class="dropdown-item" href="../pesanan_dibayar.php" style="color: black !important;">Dibayar</a></li>
+                <li><a class="dropdown-item" href="../pesanan_selesai.php" style="color: black !important;">Selesai</a></li>                
+              </ul>
+            </li>
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="../../backend/tambah_produk.php">Tambah Produk</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="../../backend/tambah_admin.php">Tambah Admin</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="../pesanan_admin.php">Pesanan</a>
             </li>
           </ul>
           <!-- <form class="d-flex" action="" method="POST">

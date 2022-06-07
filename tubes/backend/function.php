@@ -472,6 +472,30 @@ function proses($data){
 
 }
 
+function bayar($data){
+	global $db;
+
+	$id = htmlspecialchars($data['id']);
+	$nama = htmlspecialchars($data['nama']);
+	$jumlah = htmlspecialchars($data['jumlah']);
+	$gambar = upload();
+
+	if (query("SELECT * FROM pembayaran WHERE id_transaksi = '$id'")) {
+		echo "<script>
+				alert('Anda sudah melakukan pembayaran, tunggu hingga admin memproses pesana anda.');
+				document.location.href='pesanan.php';
+			</script>
+		";
+		return false;
+	}
+
+	$query= "INSERT INTO pembayaran VALUES (null,'$id','$nama','$jumlah','$gambar',CURRENT_TIMESTAMP)";
+
+	mysqli_query($db,$query) or die(mysqli_error($db));
+
+	return mysqli_affected_rows($db);
+}
+
 
 
 

@@ -12,14 +12,28 @@ require '../backend/function.php';
 
 $adminLogin = $_SESSION['adminLogin'];
 
+$bayar = query("SELECT * FROM pembayaran JOIN transaksi ON pembayaran.id_transaksi = transaksi.id_transaksi JOIN produk ON transaksi.id_produk = produk.kode_produk JOIN user ON transaksi.id_user = user.id_user WHERE status_transaksi = 'pending' ");
 
-$pending = query("SELECT * FROM transaksi JOIN user ON transaksi.id_user = user.id_user JOIN produk ON transaksi.id_produk = produk.kode_produk WHERE transaksi.status_transaksi = 'pending' ");
+$empty = mysqli_query($db,"SELECT * FROM pembayaran JOIN transaksi ON pembayaran.id_transaksi = transaksi.id_transaksi JOIN produk ON transaksi.id_produk = produk.kode_produk JOIN user ON transaksi.id_user = user.id_user WHERE status_transaksi = 'pending' "
+);
 
-$selesai = query("SELECT * FROM transaksi JOIN user ON transaksi.id_user = user.id_user JOIN produk ON transaksi.id_produk = produk.kode_produk WHERE transaksi.status_transaksi = 'selesai' ");
-
-$bayar = query("SELECT * FROM pembayaran JOIN transaksi ON pembayaran.id_transaksi = transaksi.id_transaksi JOIN produk ON transaksi.id_produk = produk.kode_produk ");
-
-$empty = mysqli_query($db,"SELECT * FROM transaksi JOIN user ON transaksi.id_user = user.id_user JOIN produk ON transaksi.id_produk = produk.kode_produk");
+if (isset($_POST['proses'])) {
+    if ( proses($_POST) > 0) {
+      echo "
+      <script>
+        alert('Berhasil diproses');
+        document.location.href='pesanan_dibayar.php';
+      </script>
+    ";
+    } else {
+      echo "
+      <script>
+        alert('gagal diproses');
+        document.location.href='pesanan_dibayar.php';
+      </script>
+    ";
+    }
+  }
 
 
  ?>
@@ -66,14 +80,15 @@ $empty = mysqli_query($db,"SELECT * FROM transaksi JOIN user ON transaksi.id_use
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
-            <li class="nav-item">
-              <a class="nav-link" href="halaman_admin.php">Kembali</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#1">Pending</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#2">Selesai</a>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Dibayar
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" >
+                <li><a class="dropdown-item" href="halaman_admin.php" style="color: black !important;">Dashboard</a></li>
+                <li><a class="dropdown-item" href="pesanan_pending.php" style="color: black !important;">Pending</a></li>
+                <li><a class="dropdown-item" href="pesanan_selesai.php" style="color: black !important;">Selesai</a></li>                
+              </ul>
             </li>
           </ul>
           <a ><i class="fa-solid fa-user me-2"></i></a>
@@ -86,15 +101,22 @@ $empty = mysqli_query($db,"SELECT * FROM transaksi JOIN user ON transaksi.id_use
     <!-- akhir navbar -->
 
     <!-- ini isi -->
-
+    
     <section id="1">
       <div class="container-fluid pt-5">
         <div class="container mt-4 mb-4 pt-4">
-          <h4 class="fw-bold text-center text-lg-start">Belum diproses</h4>
+          <h4 class="fw-bold text-center text-lg-start">Sudah dibayar</h4>
           <div class="col-md-12 w-100">
             <div class="row " id="isi1">
+              <?php if (mysqli_num_rows($empty) === 0): ?>
+                <div class="row h-100 w-100 mx-auto" style=" min-height: 50vh ;">
+                  <div class="col-md-12 mx-auto my-auto text-center">
+                    <h4>Belum ada user yang melakukan pembayaran produk</h4>
+                  </div>
+                </div>
+              <?php endif ?>
 
-              <?php foreach ( $pending as $k): ?>
+              <?php foreach ( $bayar as $k): ?>
 
                 <div class="col-6 col-md-3">
                   <div class="card c-admin p-2 pb-0 shadow-sm bg-body rounded mt-4">
@@ -105,7 +127,10 @@ $empty = mysqli_query($db,"SELECT * FROM transaksi JOIN user ON transaksi.id_use
                       <p>Status : <span style="font-style: italic ;"><?php echo $k['status_transaksi'] ?></span></p>
                     </div>    
                     <div class="text-center action mb-3">
-                      <a href="detail_pesanan_admin.php?kode_produk=<?php echo $k['kode_produk'] ?>&id_user=<?php echo $k['id_user'] ?>" class="bg-dark more">Detail</a>
+                        <form action="" method="POST">
+                        <input type="hidden" name="id" value="<?php  echo $k['id_transaksi'] ?>">
+                        <button class="more btn-dark" type="submit" name="proses">Proses</button>
+                      </form>
                     </div>
                   </div>
                 </div>
@@ -117,36 +142,7 @@ $empty = mysqli_query($db,"SELECT * FROM transaksi JOIN user ON transaksi.id_use
       </div>
     </section>
 
-    <section id="2">
-      <div class="container-fluid ">
-        <div class="container mt-4 mb-4 pt-3">
-          <h4 class="fw-bold text-center text-lg-start">Sudah diproses</h4>
-          <div class="col-md-12 w-100">
-            <div class="row " id="isi1">
-
-              <?php foreach ( $selesai as $s): ?>
-
-                <div class="col-6 col-md-3">
-                  <div class="card c-admin p-2 pb-0 shadow-sm bg-body rounded mt-4">
-                    <img src="../aset/img/<?php echo $s["gambar_produk"] ?>">
-                    <div class="text-center title">
-                      <p class="m-0 nama_produk"><?php echo $s["nama_produk"]; ?></p>
-                      <p class="m-0" style=" font-size: 12px;"><?php echo $s["username_user"]; ?></p>
-                      <p>Status : <span style="font-style: italic ;"><?php echo $s['status_transaksi'] ?></span></p>
-                    </div>    
-                    <div class="text-center action mb-3">
-                      <a href="detail_pesanan_admin.php?kode_produk=<?php echo $s['kode_produk'] ?>&id_user=<?php echo $s['id_user'] ?>" class="bg-dark more">Detail</a>
-                    </div>
-                  </div>
-                </div>
-                
-              <?php endforeach; ?>  
-            </div> 
-          </div>
-        </div>
-      </div>
-    </section>
-
+    
     <!-- akhir isi -->
 
     <!-- Optional JavaScript; choose one of the two! -->
